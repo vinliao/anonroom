@@ -1,5 +1,6 @@
 <script>
 	import * as secp from "@noble/secp256k1";
+	import { format } from 'timeago.js';
 
 	const privateKey = "c248d1ad9b7c8994c7ca4a25076a6cbd620f8b5fe8006d489c0db2e4bce2d5c4";
 	const publicKey = "dd20c14acca7bc078cd35d86aabf3bad33ae5633fad22d56108a99f8e6179ecf";
@@ -38,7 +39,7 @@
     }
   }
 
-	let messages = [];
+	let tweets = [];
 
 	// websocket stuff
 	// let url = "ws://localhost:8080";
@@ -54,10 +55,11 @@
 	socket.onmessage = function (incomingPayload) {
 		let payload = JSON.parse(incomingPayload.data);
 		let event = payload[2];
-		messages.unshift(event.content);
+		let timestamp = event.created_at + "000"; // add the milliseconds
+		let tweet = {"message": event.content, "time": format(timestamp)};
+		tweets.unshift(tweet);
 		// force re-render
-		messages = messages;
-		console.log(event);
+		tweets = tweets;
 	}
 
 	async function submit() {
@@ -65,7 +67,7 @@
 		let event = await createEvent();
 		socket.send(JSON.stringify(["EVENT", event]));
 		// force re-render
-		messages = messages;
+		tweets = tweets;
 		inputMessage = "";
 	}
 </script>
@@ -91,13 +93,13 @@
 		</form>
 
 		<div class="list-group overflow-auto">
-			{#each messages as message}
+			{#each tweets as tweet}
 				<div class="list-group-item py-3 lh-tight" aria-current="true">
 					<div class="d-flex w-100 align-items-center justify-content-between">
 						<span class="fw-bold">anon says:</span>
-						<span class="fw-light">Wed</span>
+						<span class="fw-light">{tweet.time}</span>
 					</div>
-					<div class="col-10 mb-1 small">{message}</div>
+					<div class="col-10 mb-1 small">{tweet.message}</div>
 				</div>
 			{/each}
 		</div>
