@@ -11,26 +11,32 @@
 	];
 
 	function submit() {
-		texts.push(message);
+		texts.unshift(message);
 		// force re-render
 		texts = texts;
 		message = "";
 	}
 </script>
 
-<main>
-	<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="max-width: 576px; margin: auto; height: 100vh;">
+<main style="max-width: 576px; margin: auto;">
+	<div class="d-flex flex-column align-items-stretch justify-content-between flex-shrink-0 bg-white">
 		<div class="d-flex justify-content-between mb-3">
-		<a href="/" class="d-flex p-3 link-dark text-decoration-none">
-			<span class="fw-bold">anonroom</span>
-		</a>
+			<a href="/" class="d-flex p-3 link-dark text-decoration-none">
+				<span class="fw-bold">anonroom</span>
+			</a>
 
-		<!-- todo: point to github -->
-		<a href="https://github.com" class="d-flex p-3 link-dark text-decoration-none">
-			<span class="fw-light">about</span>
-		</a>
+			<!-- todo: point to github repo -->
+			<a href="https://github.com" class="d-flex p-3 link-dark text-decoration-none">
+				<span class="fw-light">about</span>
+			</a>
 		</div>
 
+		<form on:submit|preventDefault="{submit}">
+			<div class="input-group"> 
+				<input type="text" class="form-control" bind:value="{message}" placeholder="What's on your mind, anon?"> 
+				<button class="btn btn-outline-secondary" type="submit">Send</button>
+			</div>
+		</form>
 
 		<div class="list-group overflow-auto">
 			{#each texts as text}
@@ -43,12 +49,5 @@
 				</div>
 			{/each}
 		</div>
-
-		<form on:submit|preventDefault="{submit}">
-			<div class="input-group mb-3"> 
-				<input type="text" class="form-control" bind:value="{message}" placeholder="What's on your mind, anon?"> 
-				<button class="btn btn-outline-secondary" type="submit">Send</button>
-			</div>
-		</form>
 	</div>
 </main>
