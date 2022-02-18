@@ -1,7 +1,42 @@
 <script>
-	export let name;
+	import * as secp from "@noble/secp256k1";
 
-	let message;
+	const privateKey = "c248d1ad9b7c8994c7ca4a25076a6cbd620f8b5fe8006d489c0db2e4bce2d5c4";
+	const publicKey = "dd20c14acca7bc078cd35d86aabf3bad33ae5633fad22d56108a99f8e6179ecf";
+	let inputMessage;
+
+	function toHexString(byteArray) {
+    return Array.prototype.map
+      .call(byteArray, function (byte) {
+        return ("0" + (byte & 0xff).toString(16)).slice(-2);
+      })
+      .join("");
+  }
+
+	async function createEvent() {
+    const content = inputMessage;
+    const unixTime = Math.floor(Date.now() / 1000);
+    const data = [0, publicKey, unixTime, 1, [], content];
+
+    // id is sha256 of data above
+    // sig is schnorr sig of id
+    const eventString = JSON.stringify(data);
+    const eventByteArray = new TextEncoder().encode(eventString);
+    const eventIdRaw = await secp.utils.sha256(eventByteArray);
+    const eventId = toHexString(eventIdRaw);
+    const signatureRaw = await secp.schnorr.sign(eventId, privateKey);
+    const signature = toHexString(signatureRaw);
+
+    return {
+      id: eventId,
+      pubkey: publicKey,
+      created_at: unixTime, 
+      kind: 1,
+      tags: [],
+      content: content, 
+      sig: signature
+    }
+  }
 
 	// get data from relay over here
 	let texts = ["This is first text", 
@@ -10,11 +45,12 @@
 		"This is fourth text",
 	];
 
-	function submit() {
-		texts.unshift(message);
+	async function submit() {
+		console.log(await createEvent());
+		texts.unshift(inputMessage);
 		// force re-render
 		texts = texts;
-		message = "";
+		inputMessage = "";
 	}
 </script>
 
@@ -33,7 +69,7 @@
 
 		<form on:submit|preventDefault="{submit}">
 			<div class="input-group"> 
-				<input type="text" class="form-control" bind:value="{message}" placeholder="What's on your mind, anon?"> 
+				<input type="text" class="form-control" bind:value="{inputMessage}" placeholder="What's on your mind, anon?"> 
 				<button class="btn btn-outline-secondary" type="submit">Send</button>
 			</div>
 		</form>
