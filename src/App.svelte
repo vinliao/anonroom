@@ -38,7 +38,21 @@
     }
   }
 
-	// get data from relay over here
+	// websocket stuff
+	// let url = "ws://localhost:8080";
+	let url = "wss://nostr-pub.wellorder.net";
+	let socket = new WebSocket(url);
+
+	socket.onopen = function (event) {
+		console.log(`Connected to ${url}`)
+		socket.send(JSON.stringify(["REQ", "foobar", {"authors": [publicKey]}]));
+	};
+
+	// take data and parse here
+	socket.onmessage = function (event) {
+		console.log(event.data);
+	}
+
 	let texts = ["This is first text", 
 		"This is second text",
 		"This is third text this is third text this is third text this is third text",
@@ -46,7 +60,9 @@
 	];
 
 	async function submit() {
-		console.log(await createEvent());
+		// submit to relay here
+		let event = await createEvent();
+		socket.send(JSON.stringify(["EVENT", event]));
 		texts.unshift(inputMessage);
 		// force re-render
 		texts = texts;
