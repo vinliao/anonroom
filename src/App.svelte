@@ -2,7 +2,25 @@
 	export let name;
 
 	// get data from relay over here
-	const texts = ["This is first text", "This is second text", "This is third text what if awzlznlkndsv;landlvkansdl;"];
+	let texts = ["This is first text", 
+		"This is second text",
+		"This is third text this is third text this is third text this is third text",
+		"This is fourth text",
+		"This is fifth text",
+		"This is sixth text",
+		"This is fourth text",
+		"This is fourth text",
+		"This is fourth text",
+		"This is fourth text",
+		"This is fifth text",
+		"This is sixth text",
+		"This is fifth text",
+		"This is sixth text",
+		"This is fifth text",
+		"This is sixth text",
+		"This is fifth text",
+		"This is sixth text",
+	];
 
 	function submit() {
 		alert('submitting');
@@ -11,8 +29,8 @@
 
 <main>
 	<div class="d-flex justify-content-center">
-		<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
-			<div class="d-flex justify-content-between">
+		<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 576px; height: 100vh;">
+			<div class="d-flex justify-content-between mb-3">
 			<a href="/" class="d-flex p-3 link-dark text-decoration-none">
 				<span class="fw-bold">anonroom</span>
 			</a>
@@ -24,7 +42,7 @@
 			</div>
 
 
-			<div class="list-group list-group-flush border-bottom scrollarea">
+			<div class="list-group list-group-flush border-bottom overflow-auto">
 				{#each texts as text}
 					<div class="list-group-item py-3 lh-tight" aria-current="true">
 						<div class="d-flex w-100 align-items-center justify-content-between">
@@ -37,7 +55,8 @@
 			</div>
 
 			<form on:submit|preventDefault="{submit}">
-				<div class="input-group"> <input type="text" class="form-control" placeholder="What's on your mind, anon?" aria-label="Recipient's username" aria-describedby="button-addon2"> 
+				<div class="input-group mb-3"> 
+					<input type="text" class="form-control" placeholder="What's on your mind, anon?" aria-label="Input box" aria-describedby="button-addon2"> 
 					<button class="btn btn-outline-secondary" type="submit" id="button-addon2">Send</button>
 				</div>
 			
