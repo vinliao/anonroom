@@ -38,6 +38,8 @@
     }
   }
 
+	let messages = [];
+
 	// websocket stuff
 	// let url = "ws://localhost:8080";
 	let url = "wss://nostr-pub.wellorder.net";
@@ -49,23 +51,21 @@
 	};
 
 	// take data and parse here
-	socket.onmessage = function (event) {
-		console.log(event.data);
+	socket.onmessage = function (incomingPayload) {
+		let payload = JSON.parse(incomingPayload.data);
+		let event = payload[2];
+		messages.unshift(event.content);
+		// force re-render
+		messages = messages;
+		console.log(event);
 	}
-
-	let texts = ["This is first text", 
-		"This is second text",
-		"This is third text this is third text this is third text this is third text",
-		"This is fourth text",
-	];
 
 	async function submit() {
 		// submit to relay here
 		let event = await createEvent();
 		socket.send(JSON.stringify(["EVENT", event]));
-		texts.unshift(inputMessage);
 		// force re-render
-		texts = texts;
+		messages = messages;
 		inputMessage = "";
 	}
 </script>
@@ -91,13 +91,13 @@
 		</form>
 
 		<div class="list-group overflow-auto">
-			{#each texts as text}
+			{#each messages as message}
 				<div class="list-group-item py-3 lh-tight" aria-current="true">
 					<div class="d-flex w-100 align-items-center justify-content-between">
 						<span class="fw-bold">anon says:</span>
 						<span class="fw-light">Wed</span>
 					</div>
-					<div class="col-10 mb-1 small">{text}</div>
+					<div class="col-10 mb-1 small">{message}</div>
 				</div>
 			{/each}
 		</div>
