@@ -1,29 +1,20 @@
 <script>
 	export let name;
 
+	let message;
+
 	// get data from relay over here
 	let texts = ["This is first text", 
 		"This is second text",
 		"This is third text this is third text this is third text this is third text",
 		"This is fourth text",
-		"This is fifth text",
-		"This is sixth text",
-		"This is fourth text",
-		"This is fourth text",
-		"This is fourth text",
-		"This is fourth text",
-		"This is fifth text",
-		"This is sixth text",
-		"This is fifth text",
-		"This is sixth text",
-		"This is fifth text",
-		"This is sixth text",
-		"This is fifth text",
-		"This is sixth text",
 	];
 
-	function submit() {
-		alert('submitting');
+	function submit(event) {
+		texts.push(message);
+		// force re-render
+		texts = texts;
+		message = "";
 	}
 </script>
 
@@ -56,8 +47,8 @@
 
 			<form on:submit|preventDefault="{submit}">
 				<div class="input-group mb-3"> 
-					<input type="text" class="form-control" placeholder="What's on your mind, anon?" aria-label="Input box" aria-describedby="button-addon2"> 
-					<button class="btn btn-outline-secondary" type="submit" id="button-addon2">Send</button>
+					<input type="text" class="form-control" bind:value="{message}" placeholder="What's on your mind, anon?"> 
+					<button class="btn btn-outline-secondary" type="submit">Send</button>
 				</div>
 			
 			</form>
