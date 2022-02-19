@@ -82,7 +82,7 @@
 			</a>
 
 			<!-- todo: point to github repo -->
-			<a href="https://github.com" class="d-flex p-3 link-dark text-decoration-none">
+			<a href="https://github.com/vinliao/anonroom" class="d-flex p-3 link-dark text-decoration-none">
 				<span class="fw-light">about</span>
 			</a>
 		</div>
