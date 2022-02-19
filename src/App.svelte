@@ -2,6 +2,8 @@
 	import * as secp from "@noble/secp256k1";
 	import { format } from 'timeago.js';
 
+	// public and private key of production should be separate from the dev one
+	// maybe environment variable?
 	const privateKey = "c248d1ad9b7c8994c7ca4a25076a6cbd620f8b5fe8006d489c0db2e4bce2d5c4";
 	const publicKey = "dd20c14acca7bc078cd35d86aabf3bad33ae5633fad22d56108a99f8e6179ecf";
 	let inputMessage;
@@ -87,7 +89,8 @@
 
 		<form on:submit|preventDefault="{submit}">
 			<div class="input-group"> 
-				<input type="text" class="form-control" bind:value="{inputMessage}" placeholder="What's on your mind, anon?"> 
+				<!-- padding is to align the left part of input with the rest of the app -->
+				<input type="text" class="form-control" bind:value="{inputMessage}" placeholder="What's on your mind, anon?" style="padding-left: 16px;"> 
 				<button class="btn btn-outline-secondary" type="submit">Send</button>
 			</div>
 		</form>
