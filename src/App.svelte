@@ -4,8 +4,8 @@
 
 	// public and private key of production should be separate from the dev one
 	// maybe environment variable?
-	const privateKey = "c248d1ad9b7c8994c7ca4a25076a6cbd620f8b5fe8006d489c0db2e4bce2d5c4";
-	const publicKey = "dd20c14acca7bc078cd35d86aabf3bad33ae5633fad22d56108a99f8e6179ecf";
+	const privateKey = "6ba903b7888191180a0959a6d286b9d0719d33a47395c519ba107470412d2069";
+	const publicKey = "8565b1a5a63ae21689b80eadd46f6493a3ed393494bb19d0854823a757d8f35f";
 	let inputMessage;
 
 	function toHexString(byteArray) {
