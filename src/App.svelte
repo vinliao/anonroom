@@ -11,6 +11,7 @@
 	const privateKey = "b86e8ca23e9594b0d6d78291c23b3fc20e749c464925bdff82fc57ec95e48d0e";
 	const publicKey = "6fe50495793e11d3d866b20f45cfe26293a099a25f0533ca031ea16828b10444";
 	let inputMessage;
+	let replyData;
 
 	function toHexString(byteArray) {
 		return Array.prototype.map
@@ -76,26 +77,41 @@
 		tweets = tweets;
 		inputMessage = null;
 	}
+
+	function fillReplyData() {
+		replyData = "a";
+	}
 </script>
 
 <main class="max-w-lg mx-auto">
 	<div class="flex flex-col items-stretch justify-between shrink-0">
-			<span class="text-right font-bold text-7xl">anonroom</span>
-			<!-- a little trick to make item sit on the right -->
-			<div class="flex">
-				<div class="flex-1"></div>
-				<a href="https://github.com/vinliao/anonroom" class="text-right mb-12">
-					<span class="font-light font-mono underline">about</span>
-				</a>
-			</div>
-
+		<span class="text-right font-bold text-7xl">anonroom</span>
+		<!-- a little trick to make item sit on the right -->
+		<div class="flex">
+			<div class="flex-1"></div>
+			<a href="https://github.com/vinliao/anonroom" class="text-right mb-12">
+				<span class="font-light font-mono underline">about</span>
+			</a>
+		</div>
 
 		<form on:submit|preventDefault="{submit}">
-			<div class="flex mb-5"> 
-				<input type="text" bind:value="{inputMessage}" rows="3" placeholder="What's on your mind, anon?" class="flex-1">
+			<div class="flex"> 
+				<input type="text" bind:value="{inputMessage}" rows="3" placeholder="What's on your mind, anon?" class="flex-1 border-slate-500">
 				<button class="bg-red-800 text-white py-2 px-3 font-mono">send</button>
 			</div>
 		</form>
+		{#if replyData}
+			<div class="p-3 border-x border-b border-slate-500">
+				<div class="flex justify-between">
+					<span class="font-bold">anon says:</span>
+					<span class="font-light">2 minutes ago</span>
+				</div>
+				<div class="mb-2">the reply three two one</div>
+
+			</div>
+		{/if}
+
+		<div class="mb-5"></div>
 
 		<!-- an example of what the reply ui looks like -->
 		<div class="flex justify-between">
@@ -104,7 +120,7 @@
 		</div>
 		<div class="mb-2">the reply three two one</div>
 
-		<div class="ml-5 p-3 mb-2 bg-slate-50">
+		<div class="ml-5 p-3 mb-2 bg-gray-50">
 			<div class="flex justify-between">
 				<span class="font-bold">anon says:</span>
 				<span class="font-light">2 minutes ago</span>
@@ -114,9 +130,7 @@
 		</div>
 
 		<div class="flex mb-10">
-			<a href="/">
-				<span class="font-mono underline">reply</span>
-			</a>
+			<button class="font-mono underline" on:click="{fillReplyData}">reply</button>
 			<div class="flex-1"></div>
 		</div>
 
