@@ -74,36 +74,35 @@
 		socket.send(JSON.stringify(["EVENT", event]));
 		// force re-render
 		tweets = tweets;
-		inputMessage = "";
+		inputMessage = null;
 	}
 </script>
 
 <main class="max-w-lg mx-auto">
 	<div class="flex flex-col items-stretch justify-between shrink-0">
-		<div class="flex justify-between py-3">
-			<a href="/" class="">
-				<span class="font-bold">anonroom</span>
-			</a>
-			<a href="https://github.com/vinliao/anonroom" class="">
-				<span class="font-light">about</span>
-			</a>
-		</div>
+			<span class="text-right font-bold text-7xl">anonroom</span>
+			<!-- a little trick to make item sit on the right -->
+			<div class="flex">
+				<div class="flex-1"></div>
+				<a href="https://github.com/vinliao/anonroom" class="text-right mb-12">
+					<span class="font-light font-mono">about</span>
+				</a>
+			</div>
 
 
 		<form on:submit|preventDefault="{submit}">
-			<div class="flex flex-col mb-5"> 
-				<textarea bind:value="{inputMessage}" rows="3" placeholder="What's on your mind, anon?"></textarea>
-				<!-- <button bg-red-500 hover:bg-red-dark type="submit">Send</button> -->
-				<button class="bg-red-500 hover:bg-red-700 text-white p-1">send</button>
+			<div class="flex mb-5"> 
+				<input type="text" bind:value="{inputMessage}" rows="3" placeholder="What's on your mind, anon?" class="flex-1">
+				<button class="bg-red-800 text-white py-2 px-3 font-mono">send</button>
 			</div>
 		</form>
 
 		{#each tweets as tweet}
 			<div class="flex justify-between">
-				<span class="fw-bold">anon says:</span>
-				<span class="fw-light">{tweet.time}</span>
+				<span class="font-bold">anon says:</span>
+				<span class="font-light">{tweet.time}</span>
 			</div>
-			<div class="mb-5">{tweet.message}</div>
+			<div class="mb-8">{tweet.message}</div>
 		{/each}
 	</div>
 </main>
