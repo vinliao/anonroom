@@ -78,38 +78,32 @@
 	}
 </script>
 
-<main style="max-width: 576px; margin: auto;">
-	<h1 class="underline">hey</h1>
-	<div class="d-flex flex-column align-items-stretch justify-content-between flex-shrink-0 bg-white">
-		<div class="d-flex justify-content-between mb-3">
-			<a href="/" class="d-flex p-3 link-dark text-decoration-none">
-				<span class="fw-bold">anonroom</span>
+<main class="max-w-lg mx-auto">
+	<div class="flex flex-col items-stretch justify-between shrink-0">
+		<div class="flex justify-between py-3">
+			<a href="/" class="">
+				<span class="font-bold">anonroom</span>
 			</a>
-
-			<!-- todo: point to github repo -->
-			<a href="https://github.com/vinliao/anonroom" class="d-flex p-3 link-dark text-decoration-none">
-				<span class="fw-light">about</span>
+			<a href="https://github.com/vinliao/anonroom" class="">
+				<span class="font-light">about</span>
 			</a>
 		</div>
 
+
 		<form on:submit|preventDefault="{submit}">
-			<div class="input-group"> 
-				<!-- padding is to align the left part of input with the rest of the app -->
-				<input type="text" class="form-control" bind:value="{inputMessage}" placeholder="What's on your mind, anon?" style="padding-left: 16px;"> 
-				<button class="btn btn-outline-secondary" type="submit">Send</button>
+			<div class="flex flex-col mb-5"> 
+				<textarea bind:value="{inputMessage}" rows="3" placeholder="What's on your mind, anon?"></textarea>
+				<!-- <button bg-red-500 hover:bg-red-dark type="submit">Send</button> -->
+				<button class="bg-red-500 hover:bg-red-700 text-white p-1">send</button>
 			</div>
 		</form>
 
-		<div class="list-group overflow-auto">
-			{#each tweets as tweet}
-				<div class="list-group-item py-3 lh-tight" aria-current="true">
-					<div class="d-flex w-100 align-items-center justify-content-between">
-						<span class="fw-bold">anon says:</span>
-						<span class="fw-light">{tweet.time}</span>
-					</div>
-					<div class="col-10 mb-1 small">{tweet.message}</div>
-				</div>
-			{/each}
-		</div>
+		{#each tweets as tweet}
+			<div class="flex justify-between">
+				<span class="fw-bold">anon says:</span>
+				<span class="fw-light">{tweet.time}</span>
+			</div>
+			<div class="mb-5">{tweet.message}</div>
+		{/each}
 	</div>
 </main>
