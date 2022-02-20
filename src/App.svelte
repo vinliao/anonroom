@@ -4,8 +4,12 @@
 
 	// public and private key of production should be separate from the dev one
 	// maybe environment variable?
-	const privateKey = "6ba903b7888191180a0959a6d286b9d0719d33a47395c519ba107470412d2069";
-	const publicKey = "8565b1a5a63ae21689b80eadd46f6493a3ed393494bb19d0854823a757d8f35f";
+	// const privateKey = "6ba903b7888191180a0959a6d286b9d0719d33a47395c519ba107470412d2069";
+	// const publicKey = "8565b1a5a63ae21689b80eadd46f6493a3ed393494bb19d0854823a757d8f35f";
+
+	// dummy keypair for development
+	const privateKey = "b86e8ca23e9594b0d6d78291c23b3fc20e749c464925bdff82fc57ec95e48d0e";
+	const publicKey = "6fe50495793e11d3d866b20f45cfe26293a099a25f0533ca031ea16828b10444";
 	let inputMessage;
 
 	function toHexString(byteArray) {
@@ -75,6 +79,7 @@
 </script>
 
 <main style="max-width: 576px; margin: auto;">
+	<h1 class="underline">hey</h1>
 	<div class="d-flex flex-column align-items-stretch justify-content-between flex-shrink-0 bg-white">
 		<div class="d-flex justify-content-between mb-3">
 			<a href="/" class="d-flex p-3 link-dark text-decoration-none">
