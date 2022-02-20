@@ -111,7 +111,12 @@
 			</div>
 		{/if}
 
-		<div class="mb-5"></div>
+		<!-- separator of input and the tweets -->
+		<div class="flex my-5">
+			<div class="flex-1"></div>
+			<div>· · ·</div>
+			<div class="flex-1"></div>
+		</div>
 
 		<!-- an example of what the reply ui looks like -->
 		<div class="flex justify-between">
