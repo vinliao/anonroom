@@ -116,7 +116,7 @@
 					<span class="font-bold">anon says:</span>
 					<span class="font-light">{toBeReplied.time}</span>
 				</div>
-				<div>{toBeReplied.message}</div>
+				<div class="break-words">{toBeReplied.message}</div>
 				<div class="flex">
 					<div class="flex-1"></div>
 					<button class="font-mono underline" on:click="{deleteReplyData}">cancel</button>

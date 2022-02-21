@@ -15,9 +15,9 @@
       <span>anon said:</span>
       <div></div>
     </div>
-    <div class="font-light text-slate-600">{replied.message}</div>
+    <div class="font-light text-slate-600 break-words">{replied.message}</div>
   </div>
 {/if}
-<div class="mb-2">{message}</div>
+<div class="mb-2 break-words">{message}</div>
 <!-- there are pr-3 above bc if p-3 is applied to the parent div
 the background of replied text will also get padded -->

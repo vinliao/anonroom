@@ -632,6 +632,9 @@ select {
 .justify-between {
   justify-content: space-between;
 }
+.break-words {
+  overflow-wrap: break-word;
+}
 .border-x {
   border-left-width: 1px;
   border-right-width: 1px;
