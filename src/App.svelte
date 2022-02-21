@@ -73,9 +73,12 @@
 		let timestamp = event.created_at + "000"; // add the milliseconds
 
 		// if there's replied
+		// potential bug: if the replied event is outside the tweets array
 		let replied;
 		if(event.tags.length > 0) {
-			replied = {"message": "dummy reply", "time": "2 minutes ago"};
+			let repliedId = event.tags[0][1];
+			let repliedTweet = tweets.find(o => o.id === repliedId);
+			replied = {"message": repliedTweet.message, "time": repliedTweet.time};
 		}
 
 		let tweet = {"message": event.content, "time": format(timestamp), "id": event.id, "replied": replied};
