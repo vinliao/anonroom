@@ -71,7 +71,14 @@
 		let payload = JSON.parse(incomingPayload.data);
 		let event = payload[2];
 		let timestamp = event.created_at + "000"; // add the milliseconds
-		let tweet = {"message": event.content, "time": format(timestamp), "id": event.id};
+
+		// if there's replied
+		let replied;
+		if(event.tags.length > 0) {
+			replied = {"message": "dummy reply", "time": "2 minutes ago"};
+		}
+
+		let tweet = {"message": event.content, "time": format(timestamp), "id": event.id, "replied": replied};
 		tweets.unshift(tweet);
 		// force re-render
 		tweets = tweets;
@@ -125,7 +132,7 @@
 
 		{#each tweets as tweet}
 			<!-- tweet component is for view, not logic -->
-			<Tweet message="{tweet.message}" time="{tweet.time}"/>
+			<Tweet message="{tweet.message}" time="{tweet.time}" replied="{tweet.replied}"/>
 			<div class="flex mb-10">
 				<button class="font-mono underline" on:click="{fillReplyData(tweet.id, tweet.message, tweet.time)}">reply</button>
 				<div class="flex-1"></div>
