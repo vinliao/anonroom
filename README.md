@@ -4,3 +4,5 @@ anonroom: a censorship-resistant, anonymous chat room inside Nostr - so resistan
 A short explanation of this whole thing: The chat room is a keypair. Anyone who wants to post signs event with the room's keypair. Since everyone posts under the room's pubkey, no one knows who's who.
 
 Chat here: [https://anonroom.netlify.app](https://anonroom.netlify.app). (Please be civil!)
+
+Oh, by the way, if the date and time of your computer aren't accurate, your message will be buried in the bottom. Make sure your computer's date and time is correct.
