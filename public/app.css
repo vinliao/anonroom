@@ -635,8 +635,15 @@ select {
   border-left-width: 1px;
   border-right-width: 1px;
 }
+.border-y {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
 .border-b {
   border-bottom-width: 1px;
+}
+.border-l {
+  border-left-width: 1px;
 }
 .border-slate-500 {
   --tw-border-opacity: 1;
