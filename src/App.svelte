@@ -2,7 +2,6 @@
 	import * as secp from "@noble/secp256k1";
 	import { format } from 'timeago.js';
 	import Tweet from "./Tweet.svelte";
-	import ReplyTweet from "./ReplyTweet.svelte";
 	import Nav from "./Nav.svelte";
 	import Dots from "./Dots.svelte";
 
@@ -26,9 +25,14 @@
 	}
 
 	async function createEvent() {
+		let tags = [];
+		if(toBeReplied) {
+			tags.push(["e", toBeReplied.id]);
+		}
+
 		const content = inputMessage;
 		const unixTime = Math.floor(Date.now() / 1000);
-		const data = [0, publicKey, unixTime, 1, [], content];
+		const data = [0, publicKey, unixTime, 1, tags, content];
 
 		// id is sha256 of data above
 		// sig is schnorr sig of id
@@ -44,7 +48,7 @@
 			pubkey: publicKey,
 			created_at: unixTime, 
 			kind: 1,
-			tags: [],
+			tags: tags,
 			content: content, 
 			sig: signature
 		}
@@ -67,7 +71,7 @@
 		let payload = JSON.parse(incomingPayload.data);
 		let event = payload[2];
 		let timestamp = event.created_at + "000"; // add the milliseconds
-		let tweet = {"message": event.content, "time": format(timestamp)};
+		let tweet = {"message": event.content, "time": format(timestamp), "id": event.id};
 		tweets.unshift(tweet);
 		// force re-render
 		tweets = tweets;
@@ -83,8 +87,8 @@
 		toBeReplied = null;
 	}
 
-	function fillReplyData(message, time) {
-		toBeReplied = {message: message, time: time};
+	function fillReplyData(id, message, time) {
+		toBeReplied = {message: message, time: time, id: id};
 		document.body.scrollIntoView(); // back to top
 	}
 
@@ -123,7 +127,7 @@
 			<!-- tweet component is for view, not logic -->
 			<Tweet message="{tweet.message}" time="{tweet.time}"/>
 			<div class="flex mb-10">
-				<button class="font-mono underline" on:click="{fillReplyData(tweet.message, tweet.time)}">reply</button>
+				<button class="font-mono underline" on:click="{fillReplyData(tweet.id, tweet.message, tweet.time)}">reply</button>
 				<div class="flex-1"></div>
 			</div>
 		{/each}
