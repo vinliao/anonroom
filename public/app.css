@@ -628,6 +628,9 @@ select {
 .justify-between {
   justify-content: space-between;
 }
+.border {
+  border-width: 1px;
+}
 .border-x {
   border-left-width: 1px;
   border-right-width: 1px;
@@ -650,13 +653,13 @@ select {
 .p-3 {
   padding: 0.75rem;
 }
-.px-3 {
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-}
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 .py-3 {
   padding-top: 0.75rem;

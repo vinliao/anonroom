@@ -15,6 +15,7 @@
 	const publicKey = "6fe50495793e11d3d866b20f45cfe26293a099a25f0533ca031ea16828b10444";
 	let inputMessage;
 	let toBeReplied;
+	let formInput;
 
 	function toHexString(byteArray) {
 		return Array.prototype.map
@@ -99,11 +100,13 @@
 
 	function fillReplyData(id, message, time) {
 		toBeReplied = {message: message, time: time, id: id};
+		// todo: this works, but still buggy, not always working
+		formInput.focus();
 		document.body.scrollIntoView(); // back to top
 	}
 
 	function deleteReplyData() {
-		toBeReplied = null
+		toBeReplied = null;
 	}
 </script>
 
@@ -112,13 +115,17 @@
 		<Nav/>
 
 		<form on:submit|preventDefault="{submit}">
-			<div class="flex"> 
-				<input type="text" bind:value="{inputMessage}" rows="3" placeholder="What's on your mind, anon?" class="flex-1 focus:ring-inset focus:ring-red-600 focus:border-slate-500">
-				<button class="bg-red-800 text-white py-2 px-3 font-mono">send</button>
+			<div class="flex flex-col"> 
+				<textarea bind:value="{inputMessage}" bind:this={formInput} rows="5" placeholder="What's on your mind, anon?" class="focus:ring-inset focus:ring-red-600 focus:border-slate-500"></textarea>
+				<div class="flex">
+					<div class="flex-1"></div>
+					<button class="bg-red-800 text-white py-2 px-3 font-mono">send</button>
+				</div>
 			</div>
 		</form>
+
 		{#if toBeReplied}
-			<div class="p-3 border-x border-b border-slate-500">
+			<div class="p-3 border border-slate-500">
 				<div class="flex justify-between">
 					<span class="font-bold">anon says:</span>
 					<span class="font-light">{toBeReplied.time}</span>
