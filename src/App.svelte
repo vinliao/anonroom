@@ -114,18 +114,8 @@
 	<div class="flex flex-col items-stretch justify-between shrink-0">
 		<Nav/>
 
-		<form on:submit|preventDefault="{submit}">
-			<div class="flex flex-col"> 
-				<textarea bind:value="{inputMessage}" bind:this={formInput} rows="5" placeholder="What's on your mind, anon?" class="focus:ring-inset focus:ring-red-600 focus:border-slate-500"></textarea>
-				<div class="flex">
-					<div class="flex-1"></div>
-					<button class="bg-red-800 text-white py-2 px-3 font-mono">send</button>
-				</div>
-			</div>
-		</form>
-
 		{#if toBeReplied}
-			<div class="p-3 border border-slate-500">
+			<div class="p-3 border-x border-t border-slate-500">
 				<div class="flex justify-between">
 					<span class="font-bold">anon says:</span>
 					<span class="font-light">{toBeReplied.time}</span>
@@ -137,6 +127,16 @@
 				</div>
 			</div>
 		{/if}
+
+		<form on:submit|preventDefault="{submit}">
+			<div class="flex flex-col"> 
+				<textarea bind:value="{inputMessage}" bind:this={formInput} rows="5" placeholder="What's on your mind, anon?" class="focus:ring-inset focus:ring-red-600 focus:border-slate-500"></textarea>
+				<div class="flex">
+					<div class="flex-1"></div>
+					<button class="bg-red-800 text-white py-2 px-3 font-mono">send</button>
+				</div>
+			</div>
+		</form>
 
 		<Dots />
 
