@@ -1,5 +1,5 @@
 
-<span class="text-right font-bold text-7xl">anonroom</span>
+<span class="text-right font-bold text-5xl md:text-7xl">anonroom</span>
 <!-- a little trick to make item sit on the right -->
 <div class="flex">
   <div class="flex-1"></div>
