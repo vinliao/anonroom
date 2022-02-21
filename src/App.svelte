@@ -133,12 +133,19 @@
 
 		<Dots />
 
+		{#if tweets.length > 0}
+			<div class="border-b border-slate-500"></div>
+		{/if}
+
 		{#each tweets as tweet}
-			<!-- tweet component is for view, not logic -->
-			<Tweet message="{tweet.message}" time="{tweet.time}" replied="{tweet.replied}"/>
-			<div class="flex mb-10">
-				<button class="font-mono underline" on:click="{fillReplyData(tweet.id, tweet.message, tweet.time)}">reply</button>
-				<div class="flex-1"></div>
+			<div class="border-x border-b border-slate-500 py-3 pl-3">
+				<!-- tweet component is for view, not logic -->
+				<Tweet message="{tweet.message}" time="{tweet.time}" replied="{tweet.replied}"/>
+				<div class="flex">
+					<button class="font-mono underline" on:click="{fillReplyData(tweet.id, tweet.message, tweet.time)}">reply</button>
+					<div class="flex-1"></div>
+				</div>
+
 			</div>
 		{/each}
 	</div>

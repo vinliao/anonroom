@@ -6,7 +6,7 @@
 
 <div class="flex justify-between">
   <span class="font-bold">anon says:</span>
-  <span class="font-light">{time}</span>
+  <span class="font-light pr-3">{time}</span>
 </div>
 <div class="mb-2">{message}</div>
 {#if replied}
