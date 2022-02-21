@@ -145,7 +145,7 @@
 		{/if}
 
 		{#each tweets as tweet}
-			<div class="border-x border-b border-slate-500 py-3 pl-3">
+			<div class="border-x border-b border-slate-500 p-3">
 				<!-- tweet component is for view, not logic -->
 				<Tweet message="{tweet.message}" time="{tweet.time}" replied="{tweet.replied}"/>
 				<div class="flex">
