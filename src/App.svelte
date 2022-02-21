@@ -1,6 +1,10 @@
 <script>
 	import * as secp from "@noble/secp256k1";
 	import { format } from 'timeago.js';
+	import Tweet from "./Tweet.svelte";
+	import ReplyTweet from "./ReplyTweet.svelte";
+	import Nav from "./Nav.svelte";
+	import Dots from "./Dots.svelte";
 
 	// public and private key of production should be separate from the dev one
 	// maybe environment variable?
@@ -85,14 +89,7 @@
 
 <main class="max-w-lg mx-auto">
 	<div class="flex flex-col items-stretch justify-between shrink-0">
-		<span class="text-right font-bold text-7xl">anonroom</span>
-		<!-- a little trick to make item sit on the right -->
-		<div class="flex">
-			<div class="flex-1"></div>
-			<a href="https://github.com/vinliao/anonroom" class="text-right mb-12">
-				<span class="font-light font-mono underline">about</span>
-			</a>
-		</div>
+		<Nav/>
 
 		<form on:submit|preventDefault="{submit}">
 			<div class="flex"> 
@@ -107,51 +104,15 @@
 					<span class="font-light">2 minutes ago</span>
 				</div>
 				<div class="mb-2">the reply three two one</div>
-
 			</div>
 		{/if}
 
-		<!-- separator of input and the tweets -->
-		<div class="flex my-5">
-			<div class="flex-1"></div>
-			<div>· · ·</div>
-			<div class="flex-1"></div>
-		</div>
+		<Dots />
 
-		<!-- an example of what the reply ui looks like -->
-		<div class="flex justify-between">
-			<span class="font-bold">anon says:</span>
-			<span class="font-light">2 minutes ago</span>
-		</div>
-		<div class="mb-2">the reply three two one</div>
-
-		<div class="ml-5 p-3 mb-2 bg-gray-50">
-			<div class="flex justify-between">
-				<span class="font-bold">anon says:</span>
-				<span class="font-light">2 minutes ago</span>
-			</div>
-			<div>the replied one two three</div>
-
-		</div>
-
-		<div class="flex mb-10">
-			<button class="font-mono underline" on:click="{fillReplyData}">reply</button>
-			<div class="flex-1"></div>
-		</div>
-
+		<ReplyTweet/>
 
 		{#each tweets as tweet}
-			<div class="flex justify-between">
-				<span class="font-bold">anon says:</span>
-				<span class="font-light">{tweet.time}</span>
-			</div>
-			<div class="mb-2">{tweet.message}</div>
-			<div class="flex mb-10">
-				<a href="/">
-					<span class="font-mono underline">reply</span>
-				</a>
-				<div class="flex-1"></div>
-			</div>
+			<Tweet message="{tweet.message}" time="{tweet.time}"/>
 		{/each}
 	</div>
 </main>
