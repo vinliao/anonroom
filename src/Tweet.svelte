@@ -8,7 +8,9 @@
   <span class="font-bold">anon says:</span>
   <span class="font-light text-slate-500 pr-3">{time}</span>
 </div>
-<div class="mb-2">{message}</div>
+<div class="mb-2 pr-3">{message}</div>
+<!-- there are pr-3 above bc if p-3 is applied to the parent div
+the background of replied text will also get padded -->
 {#if replied}
   <div class="ml-5 p-3 mb-2 bg-gray-50">
     <div class="flex justify-between">

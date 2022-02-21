@@ -107,7 +107,7 @@
 	}
 </script>
 
-<main class="max-w-lg mx-auto px-3">
+<main class="max-w-lg mx-auto">
 	<div class="flex flex-col items-stretch justify-between shrink-0">
 		<Nav/>
 
@@ -145,7 +145,6 @@
 					<button class="font-mono underline" on:click="{fillReplyData(tweet.id, tweet.message, tweet.time)}">reply</button>
 					<div class="flex-1"></div>
 				</div>
-
 			</div>
 		{/each}
 	</div>
