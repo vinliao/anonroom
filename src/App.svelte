@@ -15,7 +15,7 @@
 	const privateKey = "b86e8ca23e9594b0d6d78291c23b3fc20e749c464925bdff82fc57ec95e48d0e";
 	const publicKey = "6fe50495793e11d3d866b20f45cfe26293a099a25f0533ca031ea16828b10444";
 	let inputMessage;
-	let replyData;
+	let toBeReplied;
 
 	function toHexString(byteArray) {
 		return Array.prototype.map
@@ -80,10 +80,15 @@
 		// force re-render
 		tweets = tweets;
 		inputMessage = null;
+		toBeReplied = null;
 	}
 
-	function fillReplyData() {
-		replyData = "a";
+	function fillReplyData(message, time) {
+		toBeReplied = {message: message, time: time};
+	}
+
+	function deleteReplyData() {
+		toBeReplied = null
 	}
 </script>
 
@@ -97,22 +102,29 @@
 				<button class="bg-red-800 text-white py-2 px-3 font-mono">send</button>
 			</div>
 		</form>
-		{#if replyData}
+		{#if toBeReplied}
 			<div class="p-3 border-x border-b border-slate-500">
 				<div class="flex justify-between">
 					<span class="font-bold">anon says:</span>
-					<span class="font-light">2 minutes ago</span>
+					<span class="font-light">{toBeReplied.time}</span>
 				</div>
-				<div class="mb-2">the reply three two one</div>
+				<div>{toBeReplied.message}</div>
+				<div class="flex">
+					<div class="flex-1"></div>
+					<button class="font-mono underline" on:click="{deleteReplyData}">cancel</button>
+				</div>
 			</div>
 		{/if}
 
 		<Dots />
 
-		<ReplyTweet/>
-
 		{#each tweets as tweet}
+			<!-- tweet component is for view, not logic -->
 			<Tweet message="{tweet.message}" time="{tweet.time}"/>
+			<div class="flex mb-10">
+				<button class="font-mono underline" on:click="{fillReplyData(tweet.message, tweet.time)}">reply</button>
+				<div class="flex-1"></div>
+			</div>
 		{/each}
 	</div>
 </main>
