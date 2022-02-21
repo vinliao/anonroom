@@ -145,8 +145,8 @@
 				<!-- tweet component is for view, not logic -->
 				<Tweet message="{tweet.message}" time="{tweet.time}" replied="{tweet.replied}"/>
 				<div class="flex">
-					<button class="font-mono underline" on:click="{fillReplyData(tweet.id, tweet.message, tweet.time)}">reply</button>
 					<div class="flex-1"></div>
+					<button class="font-mono underline" on:click="{fillReplyData(tweet.id, tweet.message, tweet.time)}">reply</button>
 				</div>
 			</div>
 		{/each}
