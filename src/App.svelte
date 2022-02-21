@@ -113,7 +113,7 @@
 
 		<form on:submit|preventDefault="{submit}">
 			<div class="flex"> 
-				<input type="text" bind:value="{inputMessage}" rows="3" placeholder="What's on your mind, anon?" class="flex-1 border-slate-500">
+				<input type="text" bind:value="{inputMessage}" rows="3" placeholder="What's on your mind, anon?" class="flex-1 focus:ring-inset focus:ring-red-600 focus:border-slate-500">
 				<button class="bg-red-800 text-white py-2 px-3 font-mono">send</button>
 			</div>
 		</form>
