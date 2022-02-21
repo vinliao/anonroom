@@ -85,6 +85,7 @@
 
 	function fillReplyData(message, time) {
 		toBeReplied = {message: message, time: time};
+		document.body.scrollIntoView(); // back to top
 	}
 
 	function deleteReplyData() {
