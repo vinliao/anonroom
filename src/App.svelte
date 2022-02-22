@@ -106,7 +106,7 @@
 	}
 </script>
 
-<main class="max-w-lg mx-auto">
+<main class="max-w-lg mx-auto px-2">
 	<div class="flex flex-col items-stretch justify-between shrink-0">
 		<Nav/>
 
