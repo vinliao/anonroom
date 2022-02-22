@@ -24,6 +24,7 @@
   "dependencies": {
     "@noble/secp256k1": "^1.5.3",
     "@tailwindcss/forms": "^0.4.0",
+    "autosize": "^5.0.1",
     "sirv-cli": "^2.0.0",
     "timeago.js": "^4.0.2",
     "websocket-polyfill": "^0.0.3"

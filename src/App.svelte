@@ -1,6 +1,7 @@
 <script>
 	import * as secp from "@noble/secp256k1";
 	import { format } from 'timeago.js';
+	import autosize from "autosize";
 	import Tweet from "./Tweet.svelte";
 	import Nav from "./Nav.svelte";
 	import Dots from "./Dots.svelte";
@@ -126,7 +127,7 @@
 
 		<form on:submit|preventDefault="{submit}">
 			<div class="flex flex-col"> 
-				<textarea bind:value="{inputMessage}" bind:this={formInput} rows="5" placeholder="What's on your mind, anon?" class="focus:ring-inset focus:ring-red-600 focus:border-slate-500"></textarea>
+				<textarea bind:value="{inputMessage}" bind:this={formInput} use:autosize rows="3" placeholder="What's on your mind, anon?" class="focus:ring-inset focus:ring-red-600 focus:border-slate-500"></textarea>
 				<div class="flex">
 					<div class="flex-1"></div>
 					<button class="bg-red-800 text-white py-2 px-3 font-mono">send</button>
