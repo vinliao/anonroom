@@ -115,7 +115,7 @@
 			<div class="p-3 border-x border-t border-slate-500">
 				<div class="flex justify-between">
 					<span class="font-bold">anon says:</span>
-					<span class="font-light">{toBeReplied.time}</span>
+					<span class="font-slate-400">{toBeReplied.time}</span>
 				</div>
 				<div class="break-words">{toBeReplied.message}</div>
 				<div class="flex">

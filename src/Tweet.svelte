@@ -6,7 +6,7 @@
 
 <div class="flex justify-between">
   <span class="font-bold">anon says:</span>
-  <span class="font-light text-slate-500">{time}</span>
+  <span class="text-slate-500">{time}</span>
 </div>
 {#if replied}
   <!-- <div class="ml-5 p-3 mb-2 bg-gray-50 border-y border-l border-slate-500"> -->
@@ -15,7 +15,7 @@
       <span>anon said:</span>
       <div></div>
     </div>
-    <div class="font-light text-slate-600 break-words">{replied.message}</div>
+    <div class="text-slate-500 break-words">{replied.message}</div>
   </div>
 {/if}
 <div class="mb-2 break-words">{message}</div>
