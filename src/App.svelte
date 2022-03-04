@@ -61,7 +61,11 @@
 
 	socket.onopen = function (event) {
 		console.log(`Connected to ${url}`)
-		socket.send(JSON.stringify(["REQ", "foobar", {"authors": [publicKey]}]));
+		
+		// only get a week of event
+		const unixTime = Math.floor(Date.now() / 1000);
+		const unixTimeMinus1w = unixTime - 60 * 60 * 24 * 7;
+		socket.send(JSON.stringify(["REQ", "foobar", {"authors": [publicKey], "since": unixTimeMinus1w}]));
 	};
 
 	// take data and parse here
