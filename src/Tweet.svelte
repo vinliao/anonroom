@@ -2,6 +2,10 @@
   export let time;
   export let message;
   export let replied; // a reply object, containing another tweet
+
+  function alertFeature() {
+    alert("feature not ready!");
+  }
 </script>
 
 <div class="flex justify-between">
@@ -20,7 +24,7 @@
       <span class="mb-2 break-words">{replied.message}</span>
     {:else}
       <span class="mb-2 break-words">{replied.message.slice(0, 280) + " ... "}</span>
-      <button class="font-mono underline">[more]</button>
+      <button class="font-mono underline" on:click="{alertFeature}">[more]</button>
     {/if}
   </div>
 {/if}
@@ -28,7 +32,7 @@
   <span class="mb-2 break-words">{message}</span>
 {:else}
   <span class="mb-2 break-words">{message.slice(0, 280) + " ... "}</span>
-  <button class="font-mono underline">[more]</button>
+  <button class="font-mono underline" on:click="{alertFeature}">[more]</button>
 {/if}
 
 <!-- there are pr-3 above bc if p-3 is applied to the parent div
