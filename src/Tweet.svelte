@@ -20,20 +20,10 @@
       <div></div>
     </div>
     <!-- <div class="text-slate-500 break-words">{replied.message}</div> -->
-    {#if replied.message.length < 280}
-      <span class="mb-2 break-words">{replied.message}</span>
-    {:else}
-      <span class="mb-2 break-words">{replied.message.slice(0, 280) + " ... "}</span>
-      <button class="font-mono underline" on:click="{alertFeature}">[more]</button>
-    {/if}
+    <span class="mb-2 break-words">{replied.message}</span>
   </div>
 {/if}
-{#if message.length < 280}
-  <span class="mb-2 break-words">{message}</span>
-{:else}
-  <span class="mb-2 break-words">{message.slice(0, 280) + " ... "}</span>
-  <button class="font-mono underline" on:click="{alertFeature}">[more]</button>
-{/if}
+<span class="mb-2 break-words">{message}</span>
 
 <!-- there are pr-3 above bc if p-3 is applied to the parent div
 the background of replied text will also get padded -->
